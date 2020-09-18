@@ -20,7 +20,7 @@ public class MemberController {
     //1) field injection, not good, not flexible.
     //@Autowired private final MemberService memberService;
 
-    //2)constructin injection, most encourage.
+    //2)construction injection, most encourage.
     @Autowired // automatically get container which was saved
     public MemberController(MemberService memberService){
         this.memberService = memberService;

@@ -9,11 +9,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
 import javax.sql.DataSource;
+import javax.swing.*;
 
 @Configuration
 public class SpringConfig {
 
     private DataSource dataSource;
+
+    public SpringConfig(DataSource dataSource){
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public MemberService memberService(){
