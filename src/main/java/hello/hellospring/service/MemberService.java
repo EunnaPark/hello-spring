@@ -23,14 +23,20 @@ public class MemberService {
     }
     //register member
     public Long join(Member member){
+        long start = System.currentTimeMillis();
 
-        //avoid member with same name
-        validateDuplicateMember(member);
-        //result.orElseGet() ; also good way.
+        try{
+            //avoid member with same name
+            validateDuplicateMember(member);
+            //result.orElseGet() ; also good way.
+            memberRepository.save(member);
+            return member.getId();
+        }finally{
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join >> " + timeMs +"ms");
+        }
 
-
-        memberRepository.save(member);
-        return member.getId();
     }
 
     private void validateDuplicateMember(Member member) {
