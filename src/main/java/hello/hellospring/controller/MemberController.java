@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -40,16 +41,28 @@ public class MemberController {
 
 
     @PostMapping("members/new")
-    public String create(MemberForm form){
+    public String create(MemberForm form, Model model){
         Member member = new Member();
         member.setName(form.getName());
+        member.setSalary(form.getSalary());
         memberService.join(member);
 
-        return "redirect:/";
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members",members);
+        return "members/memberList";
     }
 
     @GetMapping("/members")
     public String list(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members",members);
+        return "members/memberList";
+    }
+    @GetMapping("/members/delete")
+    public String delete(Model model, @RequestParam Long Id){
+
+        memberService.deleteById(Id);
+
         List<Member> members = memberService.findMembers();
         model.addAttribute("members",members);
         return "members/memberList";
