@@ -13,7 +13,16 @@
             <tbody>
             <tr th:each="member : ${members}">
                 <td th:text="${member.id}"></td>
-                <td th:text="${member.name}"></td>
+                <td>
+                    <input type="text" th:value="${member.name}" class="text"/>
+                </td>
+                <td>
+                    <input type="NUMBER" th:value="${member.salary}" class="text"/>
+                </td>
+
+                <td><a href="#" th:href="@{/members/delete(Id=${member.id})}"><input type="button" value="Delete"/></a>
+                    <a href="#" th:href="@{/members/update(Id=${member.id})}"><input type="button" value="Update"/></a>
+                </td>
             </tr>
             </tbody>
         </table>

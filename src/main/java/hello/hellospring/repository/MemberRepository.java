@@ -10,5 +10,5 @@ public interface MemberRepository {
     Optional<Member> findById(Long Id);// if there are no value, java 8
     Optional<Member> findByName (String name);
     List<Member> findAll();
-
+    void deleteById(Long id);
 }

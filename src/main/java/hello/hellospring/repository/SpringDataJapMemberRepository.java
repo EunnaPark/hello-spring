@@ -9,4 +9,7 @@ public interface SpringDataJapMemberRepository extends JpaRepository<Member, Lon
 
     @Override
     Optional<Member> findByName(String name);
+
+    @Override
+    void deleteById(Long id);
 }

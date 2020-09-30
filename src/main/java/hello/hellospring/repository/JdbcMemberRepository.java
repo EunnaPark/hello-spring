@@ -18,7 +18,7 @@ public class JdbcMemberRepository  implements MemberRepository{
         }
         @Override
         public Member save(Member member) {
-            String sql = "insert into member(name) values(?)";
+            String sql = "insert into member(name, salary) values(?, ?)";
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
@@ -26,6 +26,7 @@ public class JdbcMemberRepository  implements MemberRepository{
                 conn = getConnection();
                 pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 pstmt.setString(1, member.getName());
+                pstmt.setInt(2, member.getSalary());
                 pstmt.executeUpdate();
                 rs = pstmt.getGeneratedKeys();
                 if (rs.next()) {
@@ -55,6 +56,7 @@ public class JdbcMemberRepository  implements MemberRepository{
                     Member member = new Member();
                     member.setId(rs.getLong("id"));
                     member.setName(rs.getString("name"));
+                    member.setSalary(rs.getInt("salary"));
                     return Optional.of(member);
                 } else {
                     return Optional.empty();
@@ -81,6 +83,7 @@ public class JdbcMemberRepository  implements MemberRepository{
                     Member member = new Member();
                     member.setId(rs.getLong("id"));
                     member.setName(rs.getString("name"));
+                    member.setSalary(rs.getInt("salary"));
                     members.add(member);
                 }
                 return members;
@@ -90,6 +93,25 @@ public class JdbcMemberRepository  implements MemberRepository{
                 close(conn, pstmt, rs);
             }
         }
+
+
+    @Override
+    public void deleteById(Long Id) {
+        String sql = "delete from member where Id= ?";
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setLong(1, Id);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        } finally {
+            close(conn, pstmt, rs);
+        }
+    }
 
         @Override
         public Optional<Member> findByName(String name) {
@@ -106,6 +128,7 @@ public class JdbcMemberRepository  implements MemberRepository{
                     Member member = new Member();
                     member.setId(rs.getLong("id"));
                     member.setName(rs.getString("name"));
+                    member.setSalary(rs.getInt("salary"));
                     return Optional.of(member);
                 }
                 return Optional.empty();

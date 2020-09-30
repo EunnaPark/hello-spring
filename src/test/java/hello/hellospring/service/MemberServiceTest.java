@@ -5,13 +5,24 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 class MemberServiceTest {
+    @InjectMocks
     MemberService memberService;
+    @Mock
     MemoryMemberRepository memberRepository;
+
+
 
     @BeforeEach
     public void beforeEach(){
@@ -69,5 +80,15 @@ class MemberServiceTest {
 
     @Test
     void findOne() {
+    }
+
+    @ExtendWith(MockitoExtension.class)
+    void deleteById() {
+        //given
+        Long Id = Long.valueOf(1);
+        memberService.deleteById(Id);
+
+        verify(memberRepository, times(1)).deleteById(eq(Id));
+
     }
 }
