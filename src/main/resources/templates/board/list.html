@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+	<th:block layout:fragment="title">
+		<title>This page is a list page</title>
+	</th:block>
+
+	<th:block layout:fragment="search">
+		<form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
+			<input type="search" placeholder="Search..." class="input-search">
+			<button class="mdi mdi-magnify button-search" type="submit">
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+		</form>
+	</th:block>
+
+	<th:block layout:fragment="content">
+		<div class="table-responsive clearfix">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>chk</th>
+						<th>Title</th>
+						<th>Contents</th>
+						<th>Writer</th>
+						<th>Date</th>
+						<th>View Count</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${not #lists.isEmpty( boardList )}" th:each="board : ${boardList}">
+						<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+								</span>
+						</td>
+						<td th:text="${board.title}"></td>
+						<td th:text="${board.contents}"></td>
+						<td th:text="${board.writer}"></td>
+						<td th:text="${#temporals.format( board.updateTime, 'yyyy-MM-dd' )}"></td>
+						<td th:text="${board.viewCnt}"></td>
+						<td>
+							<a th:href="@{/board/view( idx=${board.idx} )}" class="editContent" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							<a th:href="@{/board/delete( idx=${board.idx} )}"  data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+						</td>
+					</tr>
+					<tr th:unless="${not #lists.isEmpty( boardList )}">
+						<td colspan="5">There are no contents.</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="btn_wrap text-right">
+				<a th:href="@{/board/write}" class="btn btn-primary waves-effect waves-light">Write</a>
+			</div>
+
+			<th:block layout:fragment="paging">
+				<nav aria-label="Page navigation" class="text-center">
+					<ul class="pagination">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</th:block>
+		</div>
+	</th:block>
+</html>

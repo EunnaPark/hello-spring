@@ -1,27 +1,40 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <hr>title</hr>
+</head>
 <body>
 <div class="container">
     <div>
+        <div><a href="/members/new"><input type="button" value="New"/></a></div>
         <table>
             <thead>
             <tr>
                 <th>No.</th>
-                <th>name</th>
+                <th>Name</th>
+                <th>Salary</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="member : ${members}">
-                <td th:text="${member.id}"></td>
+               <!-- <td th:text="${member.id}"></td>
                 <td>
                     <input type="text" th:value="${member.name}" class="text"/>
                 </td>
                 <td>
                     <input type="NUMBER" th:value="${member.salary}" class="text"/>
-                </td>
+                </td>-->
 
+                <form th:action="@{/members/update}" th:object="${member}" method="post">
+                    <td> <input type="textro" name="id" th:value="${member.id}" readonly=""></td>
+                    <td> <input type="text" name="name" th:value="${member.name}"></td>
+                    <td> <input type="text" name="salary" th:value="${member.salary}" maxlength=10></td>
+                    <td> <button type="submit">UPDATE</button></td>
+                </form>
                 <td><a href="#" th:href="@{/members/delete(Id=${member.id})}"><input type="button" value="Delete"/></a>
-                    <a href="#" th:href="@{/members/update(Id=${member.id})}"><input type="button" value="Update"/></a>
+
+
+                   <!-- <a href="#" th:href="@{/members/update(Id=${member.id})}"><input type="button" value="Update"/></a>-->
                 </td>
             </tr>
             </tbody>

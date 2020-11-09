@@ -27,7 +27,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    //3)setter injection, always need to set public. exposure at risk
+    //3)setter injection, always need to set public. might take at risk
     //@Autowired // automatically get container which was saved
     //public void setMemberController(MemberService memberService){
     //    this.memberService = memberService;
@@ -58,10 +58,21 @@ public class MemberController {
         model.addAttribute("members",members);
         return "members/memberList";
     }
+
     @GetMapping("/members/delete")
     public String delete(Model model, @RequestParam Long Id){
 
         memberService.deleteById(Id);
+
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members",members);
+        return "members/memberList";
+    }
+
+    @PostMapping("/members/update")
+    public String update(Model model, Member member ){
+
+        memberService.updateById(member);
 
         List<Member> members = memberService.findMembers();
         model.addAttribute("members",members);

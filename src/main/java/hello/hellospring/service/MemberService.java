@@ -58,4 +58,8 @@ public class MemberService {
     public void deleteById(Long id) {
         memberRepository.deleteById(id);
     }
+
+    public void updateById(Member member) {
+        memberRepository.save(member);
+    }
 }
