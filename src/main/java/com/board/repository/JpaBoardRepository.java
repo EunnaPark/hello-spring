@@ -20,7 +20,21 @@ public class JpaBoardRepository implements BoardRepository {
 
     @Override
     public Board save(Board board) {
-        em.persist(board);
+
+        if(board.getIdx() != null) {
+            Board newBoard = em.find(Board.class, board.getIdx());
+            em.getTransaction().begin();
+            newBoard.setContents(board.getContents());
+            newBoard.setTitle(board.getTitle());
+            newBoard.setDeleteYn(board.getDeleteYn());
+            newBoard.setNoticeYn(board.getNoticeYn());
+            newBoard.setSecretYn(board.getSecretYn());
+            em.getTransaction().commit();
+
+        }else{
+
+            em.persist(board);
+        }
         return board;
     }
 
