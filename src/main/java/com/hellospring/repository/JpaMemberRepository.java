@@ -1,10 +1,15 @@
-package hello.hellospring.repository;
+package com.hellospring.repository;
 
-import hello.hellospring.domain.Member;
+import com.board.domain.Board;
+import com.hellospring.domain.Member;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
+
+
 
 public class JpaMemberRepository implements MemberRepository{
 
@@ -15,7 +20,17 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public Member save(Member member) {
-        em.persist(member);
+
+        Member updateMember = em.find(Member.class, member.getId());
+        if(member.getId() != null) {
+            em.getTransaction().begin();
+            updateMember.setName(member.getName());
+            updateMember.setSalary(member.getSalary());
+            em.getTransaction().commit();
+        }else{
+            em.persist(member);
+        }
+
         return member;
     }
 

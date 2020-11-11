@@ -44,9 +44,9 @@
 			</form>
 
 			<div class="btn_wrap text-center">
-				<a th:href="@{/board/list}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
-				<a th:href="@{/board/insert( idx=${board.idx} )}" class="btn btn-primary waves-effect waves-light">수정하기</a>
-				<button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteBoard([[ ${board.idx} ]])">삭제하기</button>
+				<a th:href="@{/board}" class="btn btn-default waves-effect waves-light">Go back</a>
+				<a th:href="@{/board/insert( idx=${board.idx} )}" class="btn btn-primary waves-effect waves-light">Update</a>
+				<button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteBoard([[ ${board.idx} ]])">Delete</button>
 			</div>
 		</div>
 		<!-- /.card-content -->

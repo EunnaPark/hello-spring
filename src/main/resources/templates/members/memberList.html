@@ -1,13 +1,11 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <hr>title</hr>
-</head>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+
 <body>
+<th:block layout:fragment="content">
 <div class="container">
-    <div>
-        <div><a href="/members/new"><input type="button" value="New"/></a></div>
-        <table>
+    <div class="table-responsive clearfix">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>No.</th>
@@ -26,12 +24,13 @@
                 </td>-->
 
                 <form th:action="@{/members/update}" th:object="${member}" method="post">
-                    <td> <input type="textro" name="id" th:value="${member.id}" readonly=""></td>
-                    <td> <input type="text" name="name" th:value="${member.name}"></td>
-                    <td> <input type="text" name="salary" th:value="${member.salary}" maxlength=10></td>
-                    <td> <button type="submit">UPDATE</button></td>
+                    <td th:text="${member.id}"> </td>
+                    <input type="hidden" name="id" th:value="${member.id}"  class="form-control" readonly="">
+                    <td> <input type="text" name="name" th:value="${member.name}"class="form-control"></td>
+                    <td> <input type="text" name="salary" th:value="${member.salary}" maxlength=10 class="form-control"></td>
+                    <td> <button type="submit" class="btn btn-default waves-effect waves-light">UPDATE</button></td>
                 </form>
-                <td><a href="#" th:href="@{/members/delete(Id=${member.id})}"><input type="button" value="Delete"/></a>
+                <td><a href="#" th:href="@{/members/delete(Id=${member.id})}"><input type="button" value="Delete" class="btn btn-default waves-effect waves-light"/></a>
 
 
                    <!-- <a href="#" th:href="@{/members/update(Id=${member.id})}"><input type="button" value="Update"/></a>-->
@@ -39,7 +38,9 @@
             </tr>
             </tbody>
         </table>
+        <div><a href="/members/new"><input type="button" value="New" class="btn btn-default waves-effect waves-light"/></a></div>
     </div>
 </div> <!-- /container -->
+</th:block>
 </body>
 </html>

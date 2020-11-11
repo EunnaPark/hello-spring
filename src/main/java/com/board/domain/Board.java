@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity //JPA
 public class Board {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     /** idx (PK) */
     private Long idx;
 

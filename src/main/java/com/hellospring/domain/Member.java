@@ -1,4 +1,4 @@
-package hello.hellospring.domain;
+package com.hellospring.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

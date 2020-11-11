@@ -1,4 +1,4 @@
-package hello.hellospring.controller;
+package com.hellospring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController{
 
-    @GetMapping("hello")
+    @GetMapping("com/hello")
     public String hello(Model model){
         model.addAttribute("data", " world!!");
-        return "hello"; //return page. with using viewResolver
+        return "com/hello"; //return page. with using viewResolver
     }
 
     @GetMapping("hello-mvc")
@@ -26,7 +26,7 @@ public class HelloController{
     @ResponseBody
     public String helloString(@RequestParam(value = "name") String name, Model model){
 
-        return "hello"+ name; // set down data with using viewResolver
+        return "com/hello" + name; // set down data with using viewResolver
     }
 
     @GetMapping("hello-api")

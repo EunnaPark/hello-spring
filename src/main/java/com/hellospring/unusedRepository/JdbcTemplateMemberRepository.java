@@ -1,20 +1,19 @@
-package hello.hellospring.repository;
+package com.hellospring.unusedRepository;
 
-import hello.hellospring.domain.Member;
+import com.hellospring.domain.Member;
+import com.hellospring.repository.MemberRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class JdbcTemplateMemberRepository implements MemberRepository{
+public class JdbcTemplateMemberRepository implements MemberRepository {
 
     private final JdbcTemplate jdbcTemplate;
     //@Autowired omitted if there are only one construction registered as Javabean

@@ -1,6 +1,7 @@
-package hello.hellospring.repository;
+package com.hellospring.unusedRepository;
 
-import hello.hellospring.domain.Member;
+import com.hellospring.domain.Member;
+import com.hellospring.repository.MemberRepository;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class JdbcMemberRepository  implements MemberRepository{
+public class JdbcMemberRepository  implements MemberRepository {
 
         private final DataSource dataSource;
 

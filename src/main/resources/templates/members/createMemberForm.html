@@ -1,15 +1,33 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+<th:block layout:fragment="title">
+    <title>For Register Member</title>
+</th:block>
 <body>
-<div class="container">
+<th:block layout:fragment="content">
+
+<div class="card-content">
     <form action="/members/new" method="post">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="put your full name">
-            <input type="number" id="salary" name="salary" placeholder="put your expectation of salary">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" id="name" name="name" placeholder="put your full name" class="form-control">
+            </div>
         </div>
-        <button type="submit">submit</button>
+       &nbsp;
+        <div class="form-group">
+            <label for="Salary" class="col-sm-2 control-label">Salary</label>
+            <div class="col-sm-10">
+                <input type="number" id="salary" name="salary" placeholder="put your expectation of salary" class="form-control">
+            </div>
+        </div>
+
+        &nbsp;
+        <div class="btn_wrap text-center">
+            <button type="submit" class="btn btn-danger waves-effect waves-light">submit</button>
+        </div>
     </form>
 </div> <!-- /container -->
+</th:block>
 </body>
 </html>

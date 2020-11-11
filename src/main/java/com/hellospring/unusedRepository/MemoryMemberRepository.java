@@ -1,12 +1,12 @@
-package hello.hellospring.repository;
+package com.hellospring.unusedRepository;
 
-import hello.hellospring.domain.Member;
-import org.springframework.stereotype.Repository;
+import com.hellospring.domain.Member;
+import com.hellospring.repository.MemberRepository;
 
 import java.util.*;
 
 //@Repository //save data (component scan)
-public class MemoryMemberRepository implements MemberRepository{
+public class MemoryMemberRepository implements MemberRepository {
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
